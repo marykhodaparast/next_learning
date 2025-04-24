@@ -20,12 +20,28 @@ const Links = () => {
       path: "/posts",
     },
   ];
-  return (<div className={styles.links}>
-    {links.map((link) => (
-      // <Link href={link.path} key={link.title}>{link.title}</Link>
-      <NavLink item={link} key={link.title} />
-    ))}
-  </div>);
+
+  //TEMPARARY
+  const session = true;
+  const isAdmin = true;
+
+  return (
+    <div className={styles.links}>
+      {links.map((link) => (
+        <NavLink item={link} key={link.title} />
+      ))}
+      {session ? (
+        <>
+          {isAdmin && (
+            <NavLink item={{ title: "Admin", path: "/admin" }}></NavLink>
+          )}
+          <button>Logout</button>
+        </>
+      ) : (
+        <NavLink item={{ title: "Login", path: "/login" }}></NavLink>
+      )}
+    </div>
+  );
 };
 
 export default Links;
